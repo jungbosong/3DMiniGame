@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LobbyScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/ZombieGameScene.unity
+    guid: e518a02b0c50b6b49ab91158af25388d
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 181a44dd38602204e89647e1e73591df, type: 2}
