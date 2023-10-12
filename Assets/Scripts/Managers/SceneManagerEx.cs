@@ -20,9 +20,9 @@ public class SceneManagerEx
 
     public BaseScene CurrentScene { get { return GameObject.Find("@Scene").GetComponent<BaseScene>(); } }
 
-    public void Init()
+    public string GetCurrentScene()
     {
-
+        return SceneManager.GetActiveScene().name;
     }
 
     public void ChangeScene(Define.Scene type)

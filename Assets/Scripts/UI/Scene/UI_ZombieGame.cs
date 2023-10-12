@@ -2,11 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_Lobby : UI_Scene
+public class UI_ZombieGame : UI_Scene
 {
+    enum Images
+    {
+        BlankImage,
+    }
     enum Texts
     {
         TitleText,
+    }
+    enum Buttons
+    {
+        StopButton,
     }
 
     void Start()
@@ -20,11 +28,17 @@ public class UI_Lobby : UI_Scene
             return false;
 
         #region Bind
+        BindImage(typeof(Images));
         BindText(typeof(Texts));
+        BindButton(typeof(Buttons));
         #endregion
 
-        GetText((int)Texts.TitleText).text = "플레이어를 움직여 미니 게임을 고르세요.";
+        GetText((int)Texts.TitleText).text = "나타나는 좀비들을 피하며 미로를 빠져나가세요!";
 
         return true;
+    }
+
+    public void BlankImage()
+    {
     }
 }

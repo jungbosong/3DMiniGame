@@ -8,7 +8,15 @@ public class Zombie : MonoBehaviour
     {
         if (collision.gameObject.name == "Player")
         {
-            Managers.Scene.ChangeScene(Define.Scene.ZombieGameScene);
+            switch(Managers.Scene.GetCurrentScene())
+            {
+                case "LobbyScene":
+                    Managers.Scene.ChangeScene(Define.Scene.ZombieGameScene);
+                    break;
+                case "ZombieGameScene":
+
+                    break;
+            }
         }
     }
 }

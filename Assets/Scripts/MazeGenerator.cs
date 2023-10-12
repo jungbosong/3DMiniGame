@@ -13,10 +13,10 @@ public class MazeGenerator : MonoBehaviour
     [SerializeField] private int height;
 
     private int[,] map;
+    public Vector3 startPosition;
+    public Vector3 endPosition;
 
     [SerializeField] private GameObject Walls;
-    //[SerializeField] private Tilemap tilemap;
-    //[SerializeField] private Tile tile;
 
     private void Awake()
     {
@@ -31,8 +31,20 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                if (x == 1 && y == 0) map[x, y] = ROAD; //시작 위치
-                else if (x == width - 2 && y == height - 1) map[x, y] = ROAD; //출구 위치
+                //시작 위치
+                if (x == 1 && y == 0)
+                {
+                    map[x, y] = ROAD;
+                    startPosition = new Vector3(-width + x, 0.5f, -height + y);
+                    GameObject player = Managers.Resource.Instantiate("Player");
+                    player.transform.position = startPosition;
+                }
+                //출구 위치
+                else if (x == width - 2 && y == height - 1)
+                {
+                    map[x, y] = ROAD;
+                    endPosition = new Vector3(-width + x, 0.5f, -height + y);
+                }
                 else if (x == 0 || x == width - 1 || y == 0 || y == height - 1) map[x, y] = WALL; //가장자리 벽
                 else if (x % 2 == 0 || y % 2 == 0) map[x, y] = WALL; //짝수 칸 벽
                 else map[x, y] = ROAD; //나머지 칸은 길
@@ -77,17 +89,14 @@ public class MazeGenerator : MonoBehaviour
                 {
                     OnDrawWall(x, y);
                 }
-                
             }
         }
     }
-
 
     private void OnDrawWall(int x, int y)
     {
         Vector3 pos = new Vector3(-width + x, 0.5f, -height + y);
         GameObject wall = Managers.Resource.Instantiate("Wall", Walls.transform);
         wall.transform.position = pos;
-        //tilemap.SetTile(pos, tile);
     }
 }
